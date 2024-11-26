@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Simulation.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Simulation.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/simulation-logo.ico"
+        Title="Simulation">
+	
+
+	<ItemsControl ItemsSource="{Binding Tiles}" >
+		<ItemsControl.Styles>
+			<Style Selector="ContentPresenter" x:DataType="vm:CanvasTile">
+				<Setter Property="Canvas.Left" Value="{Binding TopX}"/>
+				<Setter Property="Canvas.Top" Value="{Binding TopY}"/>
+			</Style>
+		</ItemsControl.Styles>
+		<ItemsControl.ItemsPanel>
+			<ItemsPanelTemplate>
+				<Canvas MaxWidth="1000" 
+						MaxHeight="500" 
+						Background="White" 
+						Margin="3"/>
+			</ItemsPanelTemplate>
+		</ItemsControl.ItemsPanel>
+		<ItemsControl.ItemTemplate>
+			<DataTemplate DataType="{x:Type vm:CanvasTile}">
+				<Image Width="84" Height="84" Source="/Assets/wolf_passive.png"/>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>
+	</ItemsControl>
+</Window>
